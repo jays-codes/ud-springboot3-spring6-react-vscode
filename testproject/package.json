@@ -1,0 +1,22 @@
+{
+  "name": "testproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/jays-codes/ud-springboot3-spring6-react-vscode.git"
+  },
+  "keywords": [
+    "test1"
+  ],
+  "author": "jayslabs",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.7.1"
+  },
+  "homepage": "https://github.com/jays-codes/ud-springboot3-spring6-react-vscode#"
+}
