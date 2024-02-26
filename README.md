@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- explored react app structure; components; created function, class components
 - ran: npx create-react-app react-todoapp-demo, npm install -g create-react-app
 
 proj:testproject
