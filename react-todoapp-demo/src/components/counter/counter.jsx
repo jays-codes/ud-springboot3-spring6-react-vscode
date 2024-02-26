@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './counter.css'
-export default function Counter(){
+import PropTypes from 'prop-types'
+
+export default function Counter({property}){
 
     /*
     const state = useState(0);
@@ -15,13 +17,13 @@ export default function Counter(){
     const [count, setCount] = useState(0);
 
     function counterPlusPlus(){
-        setCount(count+1)
+        setCount(count+property)
         console.log(count)
         console.log('counterPlusPlus clicked')
     }
 
     function decrement(){
-        setCount(count-1)
+        setCount(count-property)
         console.log(count)
         console.log('decrement clicked')
     }
@@ -37,12 +39,21 @@ export default function Counter(){
         <div className="Counter">
             <span className="count">{count}</span>
             <div><button className="countBtn" onClick={counterPlusPlus}
-            >+1</button>
+            >+{property}</button>
             <button className="countBtn" onClick={decrement}
-            >-1</button>
+            >-{property}</button>
             <button className="countBtn" onClick={counterZero}
             >reset</button>
             </div>
         </div>
     )
+
+}
+
+Counter.propTypes = {
+    property: PropTypes.number
+}
+
+Counter.defaultProps = {
+    property: 1
 }
