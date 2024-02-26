@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- added parent component to demo global variable, function, accessed in child component
 - added Properties/props, constraints using propTypes(import from prop-types'), default properties (defaultProps)
 - added increment, decrement, reset
 - added state to compo; useState hook

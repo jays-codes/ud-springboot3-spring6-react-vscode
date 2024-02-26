@@ -2,46 +2,51 @@ import { useState } from 'react'
 import './counter.css'
 import PropTypes from 'prop-types'
 
-export default function Counter({property}){
+export default function Counter(){
+    const [totcount, setCount] = useState(0);
 
-    /*
-    const state = useState(0);
-
-    function counterPlusPlus(){
-        state[1](state[0]+1)
-        console.log(state[0])
-        console.log('counterPlusPlus clicked')
+    function parentCounter(by){
+        setCount(totcount+by)
     }
-    */
+
+    return(
+        <>
+        <span className="count">{totcount}</span>    
+        <CounterButton by={1} parentCounter={parentCounter} totcount={totcount}/>
+        <CounterButton by={5} parentCounter={parentCounter} totcount={totcount}/>
+        <CounterButton by={10} parentCounter={parentCounter} totcount={totcount}/>
+        </>
+    )
+}
+
+function CounterButton({by, parentCounter, totcount}){
 
     const [count, setCount] = useState(0);
 
     function counterPlusPlus(){
-        setCount(count+property)
-        console.log(count)
-        console.log('counterPlusPlus clicked')
+        setCount(count+by)
+        parentCounter(by)
     }
 
     function decrement(){
-        setCount(count-property)
-        console.log(count)
-        console.log('decrement clicked')
+        setCount(count-by)
+        var byvar = -1 * by
+        parentCounter(byvar)
     }
 
     function counterZero(){
         setCount(0)
-        console.log(count)
-        console.log('reset clicked')
+        var byvar = -1 * totcount
+        parentCounter(byvar)
     }
-
 
     return(
         <div className="Counter">
             <span className="count">{count}</span>
             <div><button className="countBtn" onClick={counterPlusPlus}
-            >+{property}</button>
+            >+{by}</button>
             <button className="countBtn" onClick={decrement}
-            >-{property}</button>
+            >-{by}</button>
             <button className="countBtn" onClick={counterZero}
             >reset</button>
             </div>
@@ -50,10 +55,10 @@ export default function Counter({property}){
 
 }
 
-Counter.propTypes = {
-    property: PropTypes.number
+CounterButton.propTypes = {
+    by: PropTypes.number
 }
 
-Counter.defaultProps = {
-    property: 1
+CounterButton.defaultProps = {
+    by: 1
 }
