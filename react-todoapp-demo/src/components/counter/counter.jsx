@@ -18,7 +18,12 @@ export default function Counter(){
         setCount(count+1)
         console.log(count)
         console.log('counterPlusPlus clicked')
+    }
 
+    function decrement(){
+        setCount(count-1)
+        console.log(count)
+        console.log('decrement clicked')
     }
 
     function counterZero(){
@@ -33,8 +38,9 @@ export default function Counter(){
             <span className="count">{count}</span>
             <div><button className="countBtn" onClick={counterPlusPlus}
             >+1</button>
-            </div>
-            <div><button className="countBtn" onClick={counterZero}
+            <button className="countBtn" onClick={decrement}
+            >-1</button>
+            <button className="countBtn" onClick={counterZero}
             >reset</button>
             </div>
         </div>
