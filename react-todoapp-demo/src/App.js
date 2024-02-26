@@ -1,5 +1,9 @@
 import './App.css';
-import { Component } from 'react';
+
+import HWorldComponent from './components/testComponents/testComponent1'
+import {ComponentTwo} from './components/testComponents/testComponent1'
+import CompoThree from './components/testComponents/Component3'
+
 
 function App() {
   return (
@@ -9,26 +13,6 @@ function App() {
       <CompoThree/>
     </div>
   );
-}
-
-function HWorldComponent(){
-  return (
-    <div className="HworldCompo">HWORLD!!! WHOOOAAA!!!</div>
-  )
-}
-
-function ComponentTwo(){
-  return (
-    <div className="Compo2">Component X</div>
-  )
-}
-
-class CompoThree extends Component{
-  render(){
-    return (
-      <div className="Compo3">Component 3</div>
-    )  
-  }
 }
 
 export default App;

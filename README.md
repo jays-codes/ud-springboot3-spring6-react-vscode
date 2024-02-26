@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- moved components to own module; differentiate default/non default component(import)
 - connect local branch master to remote master
 - explored react app structure; components; created function, class components
 - ran: npx create-react-app react-todoapp-demo, npm install -g create-react-app
