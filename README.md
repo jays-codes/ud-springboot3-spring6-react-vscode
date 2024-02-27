@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- started todo app components; login form, backed form fields with state, Event handler function, event listener
 - refactored removed state from child component; moved all function definitions in parent component
 - moved child component to external module
 - added parent component to demo global variable, function, accessed in child component
