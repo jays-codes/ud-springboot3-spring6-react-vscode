@@ -7,7 +7,6 @@ export default function TodoApp(){
         <div className="todoapp">
             Todo Management Application
             <LoginComponent/>
-            <WelcomeComponent/>
         </div>
     )
 }
@@ -16,7 +15,7 @@ function LoginComponent(){
 
     const [user, setUser] = useState('jayslabs')
     const [pwd, setPassword] = useState()
-
+    const [isSuccess, showSuccess] = useState()
 
     function handleUserChange(event){
         console.log(event.target.value)
@@ -28,12 +27,26 @@ function LoginComponent(){
         setPassword(event.target.value)
     }
 
+    function handleSubmit(){
+        console.log(user)
+        console.log(pwd)
+
+        if (user==='jayslabs' && pwd==='password'){
+            console.log('Login Successful.')
+            showSuccess(true)
+        } else {
+            console.log('Login failed.')
+            showSuccess(false)
+        }
+
+    }
 
     return(
         <div className="login">
-            <div className="success">Authenticated Successfully</div>
-            <div className="success">Authentication Failed. </div>
             <div className="loginForm">
+                {isSuccess && <div className="successmsg">Authenticated Successfully</div>}
+                {(isSuccess===false) && <div className="errormsg">Authenticated Failed</div>}
+                {/* <SuccessMessageComponent isSuccess={isSuccess}/> */}
                 <div>
                     <label>User</label>
                     <input type="text" name="user" value={user} onChange={handleUserChange}/>
@@ -43,13 +56,12 @@ function LoginComponent(){
                     <input type="password" name="pwd" onChange={handlePwdChange} />
                 </div>
                 <div>
-                    <button type="button" name="login" >login</button>
+                    <button type="button" name="login" onClick={handleSubmit}>login</button>
                 </div>
             </div>
         </div>
     )
 }
-
 
 function WelcomeComponent(){
     return(
