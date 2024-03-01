@@ -7,6 +7,7 @@ export default function TodoApp(){
     return(
         <div className="todoapp">
             {/* Todo Management Application */}
+            <HeaderComponent/>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<LoginComponent/>}/>
@@ -14,8 +15,10 @@ export default function TodoApp(){
                     <Route path='/welcome/:user' element={<WelcomeComponent/>}/>
                     <Route path='/todos' element={<ListTodosComponent/>}/>
                     <Route path='*' element={<ErrorComponent/>}/>
+                    <Route path='/logout' element={<LogoutComponent/>}/>
                 </Routes>
             </BrowserRouter>
+            <FooterComponent/>
         </div>
     )
 }
@@ -137,6 +140,30 @@ function ListTodosComponent(){
                     </tbody>
                 </table>
             </div>
+        </div>
+    )
+}
+
+function HeaderComponent(){
+    return(
+        <div className="header">
+            Header <hr/>
+        </div>
+    )
+}
+
+function FooterComponent(){
+    return(
+        <div className="footer">
+            <hr/>Footer 
+        </div>
+    )
+}
+
+function LogoutComponent(){
+    return(
+        <div className="logout">
+            <h1>You are Logged out.</h1>
         </div>
     )
 }

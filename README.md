@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- added Header, Footer, Logout components
 - added date, boolean attributes, Date(), getFullYear(), getMonth(); used <Link> instead of <a> to access another compo via URL
 - displayed js obj arr (todos) in table; .map(), 'key' attrib
 - passed variable through Router; useParams hook
