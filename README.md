@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- refined bootstrap use in Header, Footer; refined css
 - added dep: bootstrap; used className container, table
 - added Header, Footer, Logout components
 - added date, boolean attributes, Date(), getFullYear(), getMonth(); used <Link> instead of <a> to access another compo via URL
