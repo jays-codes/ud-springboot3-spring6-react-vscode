@@ -112,10 +112,10 @@ function ListTodosComponent(){
         {id:6, desc:'Learn Systems Architecture', done: false, targetDt:targetDt}    
     ]
     return(
-        <div className="todos">
+        <div className="container">
             <h1>Things you want to do:</h1>
             <div>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <td>id</td>
