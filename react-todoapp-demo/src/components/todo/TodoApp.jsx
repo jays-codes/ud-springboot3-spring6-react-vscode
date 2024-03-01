@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import {BrowserRouter, Routes, Route, useNavigate, useParams} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useNavigate, useParams, Link} from 'react-router-dom'
 import './Todo.css'
 
 export default function TodoApp(){
@@ -82,6 +82,7 @@ function WelcomeComponent(){
     return(
         <div className="Welcome">
             <h1>Welcome {user}!</h1>
+            Your <Link to="/todos">To Do's</Link>
         </div>
     )
 }
@@ -96,13 +97,16 @@ function ErrorComponent(){
 
 function ListTodosComponent(){
 
+    const today = new Date()
+    const targetDt = new Date(today.getFullYear()+12,today.getMonth(), today.getDay())
+
     const todos=[
-        {id:1, desc:'Learn Springboot'},
-        {id:2, desc:'Learn Microservices'},
-        {id:3, desc:'Learn Devops'},    
-        {id:4, desc:'Learn App Design'},
-        {id:5, desc:'Learn Enterprise Patterns'},
-        {id:6, desc:'Learn Systems Architecture'}    
+        {id:1, desc:'Learn Springboot', done: false, targetDt:targetDt},
+        {id:2, desc:'Learn Microservices', done: false, targetDt:targetDt},
+        {id:3, desc:'Learn Devops', done: false, targetDt:targetDt},    
+        {id:4, desc:'Learn App Design', done: false, targetDt:targetDt},
+        {id:5, desc:'Learn Enterprise Patterns', done: false, targetDt:targetDt},
+        {id:6, desc:'Learn Systems Architecture', done: false, targetDt:targetDt}    
     ]
     return(
         <div className="todos">
@@ -113,6 +117,8 @@ function ListTodosComponent(){
                         <tr>
                             <td>id</td>
                             <td>description</td>
+                            <td>is done</td>
+                            <td>target date</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +128,8 @@ function ListTodosComponent(){
                             <tr  key={todo.id}>
                                 <td>{todo.id}</td>
                                 <td>{todo.desc}</td>
+                                <td>{todo.done.toString()}</td>
+                                <td>{todo.targetDt.toDateString()}</td>
                             </tr>    
                             )
                         )   
