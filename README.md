@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- displayed js obj arr (todos) in table; .map(), 'key' attrib
 - passed variable through Router; useParams hook
 - added error routing for invalid endpoint
 - added routing; dep: react-router-dom; BrowserRoutes, Routes, Route, useNavigate hook
