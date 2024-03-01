@@ -1,12 +1,19 @@
 
 import { useState } from 'react'
+import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 import './Todo.css'
 
 export default function TodoApp(){
     return(
         <div className="todoapp">
-            Todo Management Application
-            <LoginComponent/>
+            {/* Todo Management Application */}
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<LoginComponent/>}></Route>
+                    <Route path='/login' element={<LoginComponent/>}></Route>
+                    <Route path='/welcome' element={<WelcomeComponent/>}></Route>
+                </Routes>
+            </BrowserRouter>
         </div>
     )
 }
@@ -17,23 +24,26 @@ function LoginComponent(){
     const [pwd, setPassword] = useState()
     const [isSuccess, showSuccess] = useState()
 
+    const navigate = useNavigate();
+
     function handleUserChange(event){
-        console.log(event.target.value)
+        //console.log(event.target.value)
         setUser(event.target.value)
     }
 
     function handlePwdChange(event){
-        console.log(event.target.value)
+        //console.log(event.target.value)
         setPassword(event.target.value)
     }
 
     function handleSubmit(){
-        console.log(user)
-        console.log(pwd)
+        // console.log(user)
+        // console.log(pwd)
 
         if (user==='jayslabs' && pwd==='password'){
             console.log('Login Successful.')
             showSuccess(true)
+            navigate('/welcome')
         } else {
             console.log('Login failed.')
             showSuccess(false)
@@ -46,7 +56,6 @@ function LoginComponent(){
             <div className="loginForm">
                 {isSuccess && <div className="successmsg">Authenticated Successfully</div>}
                 {(isSuccess===false) && <div className="errormsg">Authenticated Failed</div>}
-                {/* <SuccessMessageComponent isSuccess={isSuccess}/> */}
                 <div>
                     <label>User</label>
                     <input type="text" name="user" value={user} onChange={handleUserChange}/>
