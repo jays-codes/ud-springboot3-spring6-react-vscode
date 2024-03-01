@@ -12,6 +12,7 @@ export default function TodoApp(){
                     <Route path='/' element={<LoginComponent/>}></Route>
                     <Route path='/login' element={<LoginComponent/>}></Route>
                     <Route path='/welcome' element={<WelcomeComponent/>}></Route>
+                    <Route path='*' element={<ErrorComponent/>}></Route>
                 </Routes>
             </BrowserRouter>
         </div>
@@ -47,6 +48,7 @@ function LoginComponent(){
         } else {
             console.log('Login failed.')
             showSuccess(false)
+            navigate('/')
         }
 
     }
@@ -76,6 +78,14 @@ function WelcomeComponent(){
     return(
         <div className="Welcome">
             WelcomeComponent
+        </div>
+    )
+}
+
+function ErrorComponent(){
+    return(
+        <div className="Error">
+            Error 404
         </div>
     )
 }
