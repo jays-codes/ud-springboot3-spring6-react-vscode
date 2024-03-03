@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useAuth } from './security/AuthContext'
+//import AuthProvider from './security/AuthContext'
 
 
 export default function LoginComponent(){
@@ -9,6 +11,9 @@ export default function LoginComponent(){
     const [isSuccess, showSuccess] = useState()
 
     const navigate = useNavigate();
+
+    const authCtx = useAuth()
+
 
     function handleUserChange(event){
         //console.log(event.target.value)
@@ -27,13 +32,15 @@ export default function LoginComponent(){
         if (user==='jayslabs' && pwd==='password'){
             console.log('Login Successful.')
             showSuccess(true)
+            //authCtx.setLoggedin(true)
             navigate(`/welcome/${user}`)
         } else {
             console.log('Login failed.')
             showSuccess(false)
             navigate('/')
         }
-
+        console.log("inside loginComponent.handleSubmit: " + authCtx.loggedin)
+        console.log("authCtx.number: " + authCtx.number)
     }
 
     return(
