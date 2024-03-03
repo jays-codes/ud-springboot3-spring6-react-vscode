@@ -8,16 +8,12 @@ export const useAuth= () => useContext(AuthCtx)
 export default function AuthProvider({children}){
 
     //Put state in the context
-    const [loggedin, setLoggedin ] = useState(false)
-
+    const [loggedin, setLoggedin] = useState(false)
     const [number, setNumber] = useState(10)
-
+    const statesToShare = {loggedin, number, setLoggedin}
     
-
-    setInterval( ()=>setNumber(number+1),10000)
-
     return (
-        <AuthCtx.Provider value={{number,loggedin}}>
+        <AuthCtx.Provider value={statesToShare}>
             {children}
         </AuthCtx.Provider>
     )

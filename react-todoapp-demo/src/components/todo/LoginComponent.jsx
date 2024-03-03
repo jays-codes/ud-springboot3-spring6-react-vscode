@@ -10,10 +10,10 @@ export default function LoginComponent(){
     const [pwd, setPassword] = useState()
     const [isSuccess, showSuccess] = useState()
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const authCtx = useAuth()
-
+    //const setLoggedin = () => authCtx.setLoggedin
 
     function handleUserChange(event){
         //console.log(event.target.value)
@@ -32,11 +32,13 @@ export default function LoginComponent(){
         if (user==='jayslabs' && pwd==='password'){
             console.log('Login Successful.')
             showSuccess(true)
-            //authCtx.setLoggedin(true)
+            authCtx.setLoggedin(true)
             navigate(`/welcome/${user}`)
         } else {
             console.log('Login failed.')
             showSuccess(false)
+            authCtx.setLoggedin(false)
+            
             navigate('/')
         }
         console.log("inside loginComponent.handleSubmit: " + authCtx.loggedin)

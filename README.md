@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- refactored context; passed in context setter; display/hide URL based on state
 - implemented context APIs, created AuthContext module; createContext(), AuthProvider, useContext() 
 - refactored todoapp.jsx; moved components into their own module
 - refined bootstrap use in Header, Footer; refined css
