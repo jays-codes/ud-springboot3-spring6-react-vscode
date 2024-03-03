@@ -10,7 +10,7 @@ export default function HeaderComponent(){
     console.log(AuthCtx)
 
     function logoutHandler(){
-        authCtx.setLoggedin(false)
+        authCtx.logout()
     }
 
     return(

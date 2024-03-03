@@ -9,9 +9,24 @@ export default function AuthProvider({children}){
 
     //Put state in the context
     const [loggedin, setLoggedin] = useState(false)
-    const [number, setNumber] = useState(10)
-    const statesToShare = {loggedin, number, setLoggedin}
     
+    function login(user, pwd){
+        if (user==='jayslabs' && pwd==='password'){
+            console.log('Login Successful.')
+            setLoggedin(true)
+            return true
+        } else {
+            console.log('Login failed.')
+            setLoggedin(false)
+            return false
+        }        
+    }
+    function logout(){
+        setLoggedin(false)        
+    }
+
+    const statesToShare = {loggedin, login, logout}
+
     return (
         <AuthCtx.Provider value={statesToShare}>
             {children}
