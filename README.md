@@ -3,7 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
-- implement Authentication on <Route>s
+- implement Authentication on Routes
 - moved login logic to AuthContext; modify login, logout and header compo
 - refactored context; passed in context setter; display/hide URL based on state
 - implemented context APIs, created AuthContext module; createContext(), AuthProvider, useContext() 
