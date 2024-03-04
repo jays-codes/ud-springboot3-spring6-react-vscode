@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom'
-import axios from 'axios'
 import { useState } from 'react'
+import { retrieveHWorldBean } from './api/HWorldAPIService'
 
 export default function WelcomeComponent(){
     const {user} = useParams()
@@ -9,10 +9,7 @@ export default function WelcomeComponent(){
 
 
     function callHWorldApi(){
-        const urlPath = 'http://localhost:8082/hello/pathparam/' + user
-
-        // axios.get('http://localhost:8082/yowbean',{withCredentials: true})
-        axios.get(urlPath,{withCredentials: true})
+        retrieveHWorldBean(user)
         .then(
             (response) => successfulResponse(response)
         )
