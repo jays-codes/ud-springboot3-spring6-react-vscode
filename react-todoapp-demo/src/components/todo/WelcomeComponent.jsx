@@ -1,11 +1,18 @@
 import {useParams} from 'react-router-dom'
 import axios from 'axios'
+import { useState } from 'react'
 
 export default function WelcomeComponent(){
     const {user} = useParams()
 
+    const [message, setMessage] = useState(null)
+
+
     function callHWorldApi(){
-        axios.get('http://localhost:8082/yowbean',{withCredentials: true})
+        const urlPath = 'http://localhost:8082/hello/pathparam/' + user
+
+        // axios.get('http://localhost:8082/yowbean',{withCredentials: true})
+        axios.get(urlPath,{withCredentials: true})
         .then(
             (response) => successfulResponse(response)
         )
@@ -19,6 +26,7 @@ export default function WelcomeComponent(){
 
     function successfulResponse(response){
         console.log(response)
+        setMessage(response.data.msg)
     }
 
     function errorResponse(error){
@@ -32,6 +40,7 @@ export default function WelcomeComponent(){
             <div>
                 <button className="btn btn-success m-5" onClick={callHWorldApi}>HWorld REST API</button>
             </div>
+            <div className="text-info">{message}</div>
         </div>
     )
 }

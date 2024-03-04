@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- display AxiomResponse values from REST API call, in Component
 - call REST API from SpringBoot REST API app; add axios dep; create handler function
 - implement Authentication on Routes
 - moved login logic to AuthContext; modify login, logout and header compo
