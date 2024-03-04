@@ -1,12 +1,12 @@
-import {useParams} from 'react-router-dom'
 import { useState } from 'react'
 import { retrieveHWorldBean } from './api/HWorldAPIService'
+import { useAuth } from './security/AuthContext'
 
 export default function WelcomeComponent(){
-    const {user} = useParams()
 
     const [message, setMessage] = useState(null)
-
+    const authCtx = useAuth()
+    const user = authCtx.user
 
     function callHWorldApi(){
         retrieveHWorldBean(user)
@@ -17,7 +17,7 @@ export default function WelcomeComponent(){
             (error) => errorResponse(error)
         )
         .finally(
-            () => console.log('cleanup')
+           // () => console.log('cleanup')
         )
     }
 

@@ -1,16 +1,37 @@
+import { retrieveUserTodos } from "./api/TodosAPIService"
+import { useEffect, useState } from "react"
+import { useAuth } from "./security/AuthContext"
+
 export default function ListTodosComponent(){
 
-    const today = new Date()
-    const targetDt = new Date(today.getFullYear()+12,today.getMonth(), today.getDay())
+    const authCtx = useAuth()
+    const user = authCtx.user
+    const [todos, setTodos] = useState([])
 
-    const todos=[
-        {id:1, desc:'Learn Springboot', done: false, targetDt:targetDt},
-        {id:2, desc:'Learn Microservices', done: false, targetDt:targetDt},
-        {id:3, desc:'Learn Devops', done: false, targetDt:targetDt},    
-        {id:4, desc:'Learn App Design', done: false, targetDt:targetDt},
-        {id:5, desc:'Learn Enterprise Patterns', done: false, targetDt:targetDt},
-        {id:6, desc:'Learn Systems Architecture', done: false, targetDt:targetDt}    
-    ]
+    useEffect( ()=>refreshTodos(),[])
+
+    function refreshTodos(){
+        retrieveUserTodos(user)
+        .then(
+            (response) => successfulResponse(response)
+        )
+        .catch(
+            (error) => errorResponse(error)
+        )
+        .finally(
+            () => console.log('cleanup')
+        )
+    }
+
+    function successfulResponse(response){
+        console.log(response)
+        setTodos(response.data)
+    }
+
+    function errorResponse(error){
+        console.log(error)        
+    }
+
     return(
         <div className="container">
             <h1>Things you want to do:</h1>
@@ -30,9 +51,9 @@ export default function ListTodosComponent(){
                             todo=>(
                             <tr  key={todo.id}>
                                 <td>{todo.id}</td>
-                                <td>{todo.desc}</td>
+                                <td>{todo.description}</td>
                                 <td>{todo.done.toString()}</td>
-                                <td>{todo.targetDt.toDateString()}</td>
+                                <td>{todo.targetDate.toString()}</td>
                             </tr>    
                             )
                         )   

@@ -5,12 +5,12 @@ import { AuthCtx, useAuth } from './security/AuthContext'
 export default function HeaderComponent(){
 
     const authCtx = useAuth()
-
+    const user = authCtx.user
     console.log("loggedin: " + authCtx.loggedin)
     console.log(AuthCtx)
 
     function logoutHandler(){
-        authCtx.logout()
+        authCtx.logout();
     }
 
     return(
@@ -23,7 +23,7 @@ export default function HeaderComponent(){
                     {(authCtx.loggedin===true) && 
                     
                         <ul className="navbar-nav">
-                            <li className="nav-item fs-5"><Link className="nav-link" to="/welcome/jayslabs">Home</Link></li>
+                            <li className="nav-item fs-5"><Link className="nav-link" to="/welcome/{authCtx.user}">Home</Link></li>
                             <li className="nav-item fs-5"><Link className="nav-link" to="/todos">Todos</Link></li>
                         </ul>
                     }           
