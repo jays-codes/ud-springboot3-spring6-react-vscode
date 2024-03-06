@@ -5,7 +5,7 @@ import { AuthCtx, useAuth } from './security/AuthContext'
 export default function HeaderComponent(){
 
     const authCtx = useAuth()
-    const user = authCtx.user
+    //const user = authCtx.user
     console.log("loggedin: " + authCtx.loggedin)
     console.log(AuthCtx)
 
