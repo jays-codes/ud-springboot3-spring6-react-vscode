@@ -3,7 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
-- create REST API for deleteTodo; pass in variable to onClick to handler; added message field
+- created handlers/function for SpringBoot REST API for deleteTodo; pass in variable to onClick to handler; added message field
 - called SpringBoot REST API retrieveTodosByUser; displayed in listtodo component; added user to authcontext
 - refactored; used functional type function call; used axios.create to create constant of baseURL
 - refactored; moved api call to separate function in separate module
