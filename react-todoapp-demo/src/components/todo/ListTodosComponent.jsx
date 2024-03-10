@@ -1,6 +1,7 @@
-import { deleteTodoAPI, retrieveTodosAPI } from "./api/TodosAPIService"
+import { deleteTodoAPI, retrieveTodoAPI, retrieveTodosAPI } from "./api/TodosAPIService"
 import { useEffect, useState } from "react"
 import { useAuth } from "./security/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 export default function ListTodosComponent(){
 
@@ -8,13 +9,13 @@ export default function ListTodosComponent(){
     const user = authCtx.user
     const [todos, setTodos] = useState([])
     const [msg, setMsg] = useState(null)
+    const navigate = useNavigate()
 
+    
     useEffect( ()=>refreshTodos(),[] )
-
+    
     function refreshTodos(){
-        console.log("inside refreshTodos")
-        //console.log("id= " + id)
-
+    
         retrieveTodosAPI(user)
         .then(
             (response) => setTodos(response.data)
@@ -26,43 +27,39 @@ export default function ListTodosComponent(){
         )
     }
 
-    function callRetrieveTodoApi(id){
-        // console.log("inside callRetrieveTodoApi")
-        // console.log("id= " + id)
+    function callRetrieveTodo(id){
+        console.log("inside ListTodosComponent.callRetrieveTodo()")
+        // console.log("todo.id= " + todo.id)
+        // const id = todo.id
+        console.log("ida= " + id)
 
-        // retrieveUserTodo(user, id)
-        // .then(
-        //     (response) => setTodos(response.data)
-        // )
+        //retrieveTodoAPI(user, todo.id)
+        ///todos/:user/:id
+        //.then(
+            navigate(`/todo/${id}`)
+        //)
         // .catch(
         //     (error) => console.log(error)
         // )
         // .finally(
-        //     () => console.log('cleanup')
         // )
     }
 
     function callDeleteTodo(id){
-        // console.log("inside callDeleteTodoApi")
-        // console.log("id= " + id)
 
         deleteTodoAPI(user, id)
         .then( ()=>{
             setMsg(`Todo #${id} Deleted.`)
             refreshTodos()
 
-        }
-            //(response) => setTodos(response.data)
+            }
         )
         .catch(
             (error) => console.log(error)
         )
         .finally(
-            () => console.log('cleanup')
         )
     }
-
-
 
     return(
         <div className="container">
@@ -88,7 +85,7 @@ export default function ListTodosComponent(){
                                 <td>{todo.description}</td>
                                 <td>{todo.done.toString()}</td>
                                 <td>{todo.targetDate.toString()}</td>
-                                <td><button className="btn btn-warning" onClick={() => callDeleteTodo(todo.id)}>x</button> | <button className="btn btn-success" onClick={callRetrieveTodoApi}>...</button></td>
+                                <td><button className="btn btn-warning" onClick={() => callDeleteTodo(todo.id)}>x</button> | <button className="btn btn-success" onClick={() => callRetrieveTodo(todo.id)}>...</button></td>
                             </tr>    
                             )
                         )   

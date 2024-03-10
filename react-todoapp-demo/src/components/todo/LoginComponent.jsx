@@ -17,7 +17,6 @@ export default function LoginComponent(){
     }
 
     function handlePwdChange(event){
-        //console.log(event.target.value)
         setPassword(event.target.value)
     }
 

@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- created handlers/function for SpringBoot REST API for RetrieveTodo; new Component to display TodoDetails; declared useParams for (id) passed in thru router (useNavigate); displayed description 
 - created handlers/function for SpringBoot REST API for deleteTodo; pass in variable to onClick to handler; added message field
 - called SpringBoot REST API retrieveTodosByUser; displayed in listtodo component; added user to authcontext
 - refactored; used functional type function call; used axios.create to create constant of baseURL
