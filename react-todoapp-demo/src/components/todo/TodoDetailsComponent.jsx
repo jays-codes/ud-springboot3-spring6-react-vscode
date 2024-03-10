@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useAuth } from "./security/AuthContext"
 import { retrieveTodoAPI } from "./api/TodosAPIService"
-
+import {Field, Form, Formik} from "formik"
 
 export default function TodosDetailsComponent(){
 
@@ -10,6 +10,7 @@ export default function TodosDetailsComponent(){
     //const [todo, setTodo] = useState('')
 
     const [desc, setDesc] = useState('')
+    const [targetDt, setTargetDt] = useState('')
 
     const user = authCtx.user
     const {id} = useParams()
@@ -22,7 +23,10 @@ export default function TodosDetailsComponent(){
         // .then(response=> console.log(response.data))
         // .catch(error=> console.log(error))
         .then(
-                (response) => setDesc(response.data.description)
+                (response) => {
+                    setDesc(response.data.description)
+                    setTargetDt(response.data.targetDate)
+                }
             )
             .catch(
                 (error) => console.log(error)
@@ -31,13 +35,38 @@ export default function TodosDetailsComponent(){
             )    
     }
     
+    function onSubmitHandler(values){
+        console.log(values)
+    }
 
     return(
-        <div className="TodoDetails container form-check">
+        <div className="container">
             <h1>Todo Details</h1>
             <div>
-            {id} | 
-            {desc}
+                <Formik initialValues={{desc, targetDt}}
+                    enableReinitialize={true}
+                    onSubmit={onSubmitHandler}
+                >
+                {
+                    (props) => (
+                        <Form>
+                            <fieldset className="form-group">
+                                <label>Description</label>
+                                <Field type="text" className="form-control" name="desc"/>
+                            </fieldset>
+                            <fieldset className="form-group">
+                                <label>Target Date</label>
+                                <Field type="date" className="form-control" name="targetDt"/>
+                            </fieldset>
+                            <div>
+                                <button className="btn btn-success m-5" type="submit">Save</button>
+                            </div>
+                        </Form>
+                    )
+                }
+                </Formik>
+
+
             {/* {todo.id}|
             |
             {todo.targetDate.toString()} */}
