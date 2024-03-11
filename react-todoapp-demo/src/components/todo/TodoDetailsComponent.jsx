@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "./security/AuthContext"
-import { retrieveTodoAPI } from "./api/TodosAPIService"
+import { createTodoAPI, retrieveTodoAPI, updateTodoAPI } from "./api/TodosAPIService"
 import {ErrorMessage, Field, Form, Formik} from "formik"
 
 export default function TodosDetailsComponent(){
 
     const authCtx = useAuth()
-    //const [todo, setTodo] = useState('')
 
     const [desc, setDesc] = useState('')
     const [targetDt, setTargetDt] = useState('')
@@ -15,44 +14,70 @@ export default function TodosDetailsComponent(){
     const user = authCtx.user
     const {id} = useParams()
 
+    const navigate = useNavigate()
+
     useEffect( ()=>retrieveTodo(),[id] )
     
     function retrieveTodo(){
-        console.log("inside TodoDetailsComponent.retrieveTodo()")
-        retrieveTodoAPI(user, id)
-        // .then(response=> console.log(response.data))
-        // .catch(error=> console.log(error))
-        .then(
-                (response) => {
-                    setDesc(response.data.description)
-                    setTargetDt(response.data.targetDate)
-                }
-            )
-            .catch(
-                (error) => console.log(error)
-            )
-            .finally(
-            )    
+        if (id){
+            retrieveTodoAPI(user, id)
+            .then(
+                    (response) => {
+                        setDesc(response.data.description)
+                        setTargetDt(response.data.targetDate)
+                    }
+                )
+                .catch(
+                    (error) => console.log(error)
+                )
+                .finally(
+                )        
+        }
     }
 
   
     function onSubmit(values){
-        console.log("inside onSubmit()")
-        //console.log(values)
+        console.log("inside onSubmit(): values:")
+        console.log(values)
+
+        const todo = {
+            id: id,
+            username: user,
+            description: values.desc,
+            targetDate: values.targetDt,
+            done: false
+        }
+        console.log(todo)
+
+        if (id){
+            updateTodoAPI(user,id,todo)
+            .then(
+                response => {
+                    console.log(response)
+                    navigate('/todos')
+                }
+            )
+        .catch(error => console.log(error))
+        } else {
+            createTodoAPI(user, todo)
+            .then(
+                response => {
+                    console.log(response)
+                    navigate('/todos')
+                }   
+            )
+            .catch(error => console.log(error))
+        }
     }
 
     function validate(values){
         console.log("inside validate()")
 
-        let errors = {
-            // desc: 'Enter a valid description',
-            // targetDt: 'Enter a valid Date'
-        }
+        let errors = { }
 
-        if (values.desc.length<5) {
-            errors.desc = 'Enter at least 5 characters'
+        if (values.desc.length<10) {
+            errors.desc = 'Enter at least 10 characters'
         }
-        console.log(values)
         return errors
     }
 
@@ -96,37 +121,8 @@ export default function TodosDetailsComponent(){
                     )
                 }
                 </Formik>
-
-
-            {/* {todo.id}|
-            |
-            {todo.targetDate.toString()} */}
-            {/* user={user} */}
-
             </div>
-            {/* <h1>Todo Details</h1>
-            <form:form method="post" modelAttribute="todo">
-                <Fieldset class="mb-3">
-                    <form:label path="description">Description</form:label>
-                    <form:input type="text" path="description" class="form-control"
-                        required="required" />
-                    <form:errors path="description" cssClass="text-warning" />
-                </Fieldset>
-        
-                <Fieldset class="mb-3">
-                    <form:label path="targetDate">Target Date</form:label>
-                    <form:input path="targetDate" class="form-control"
-                        required="required" />
-                    <form:errors path="targetDate" cssClass="text-warning" />
-                </Fieldset>
-        
-                <form:input type="hidden" path="id" />
-                <form:input type="hidden" path="username" />
-                <form:input type="hidden" path="done" />
-                <input type="submit" class="btn btn-success" value="Save"/>
-        
-            </form:form> */}
         </div>
-        )
+    )
 }
 

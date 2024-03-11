@@ -28,21 +28,11 @@ export default function ListTodosComponent(){
     }
 
     function callRetrieveTodo(id){
-        console.log("inside ListTodosComponent.callRetrieveTodo()")
-        // console.log("todo.id= " + todo.id)
-        // const id = todo.id
-        console.log("ida= " + id)
+        navigate(`/todo/${id}`)
+    }
 
-        //retrieveTodoAPI(user, todo.id)
-        ///todos/:user/:id
-        //.then(
-            navigate(`/todo/${id}`)
-        //)
-        // .catch(
-        //     (error) => console.log(error)
-        // )
-        // .finally(
-        // )
+    function callCreateTodo(){
+        navigate('/todo')
     }
 
     function callDeleteTodo(id){
@@ -69,10 +59,10 @@ export default function ListTodosComponent(){
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>description</th>
-                            <th>done?</th>
-                            <th>target date</th>
+                            {/* <th>Id</th> */}
+                            <th>Description</th>
+                            <th>Done?</th>
+                            <th>Target Date</th>
                             <td></td>
                         </tr>
                     </thead>
@@ -81,7 +71,7 @@ export default function ListTodosComponent(){
                         todos.map(
                             todo=>(
                             <tr  key={todo.id}>
-                                <td>{todo.id}</td>
+                                {/* <td>{todo.id}</td> */}
                                 <td>{todo.description}</td>
                                 <td>{todo.done.toString()}</td>
                                 <td>{todo.targetDate.toString()}</td>
@@ -92,6 +82,7 @@ export default function ListTodosComponent(){
                         }
                     </tbody>
                 </table>
+                <button className="btn btn-success m-5" onClick={() => callCreateTodo()}>Add Todo</button>
             </div>
         </div>
     )
