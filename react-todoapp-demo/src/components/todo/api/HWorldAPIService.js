@@ -14,4 +14,19 @@ const apiClient = axios.create(
 )
 
 export const retrieveHWorldBean 
-= (user) => apiClient.get(`/hello/pathparam/${user}`,{withCredentials: true})
+= (user) => apiClient.get(`/hello/pathparam/${user}`,
+// {
+//     headers: {
+//         Authorization: 'Basic amF5bWVub3JjYToxMjM0NTY='
+//     }
+//},
+{withCredentials: true})
+
+export const executeBasicAuthService
+= (token) => apiClient.get(`/basicauth`,
+{
+    headers: {
+        Authorization: token
+    }
+},
+{withCredentials: true})

@@ -57,7 +57,13 @@ export default function TodosDetailsComponent(){
                     navigate('/todos')
                 }
             )
-        .catch(error => console.log(error))
+            .catch(
+                // error => {
+                // console.log(error)
+                // error.saveapi = 'ERROR: Cannot Save Todo.'
+                // return error
+                //}
+            )
         } else {
             createTodoAPI(user, todo)
             .then(
@@ -66,7 +72,13 @@ export default function TodosDetailsComponent(){
                     navigate('/todos')
                 }   
             )
-            .catch(error => console.log(error))
+            .catch(
+                // error => {
+                // console.log(error)
+                // error.saveapi = 'ERROR: Cannot Save Todo.'
+                // return error
+                //}
+            )
         }
     }
 
@@ -102,6 +114,12 @@ export default function TodosDetailsComponent(){
                             />
                             <ErrorMessage
                                 name="targetDt"
+                                component="div"
+                                className="alert alert-warning"
+                            />
+
+                            <ErrorMessage
+                                name="saveapi"
                                 component="div"
                                 className="alert alert-warning"
                             />

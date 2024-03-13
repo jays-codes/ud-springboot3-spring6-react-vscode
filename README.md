@@ -3,6 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
+- updated AuthContext.js to use basic auth; generate token and send token to REST API 
 - updated TodoDetails compo to call createTodo API (post), updateTodo API (put); added new Route for createTodo
 - added formik validation and error handling/display
 - added dep: formik, moment(date); displayed data in formik elements, defined handler in formik element instead of submit button

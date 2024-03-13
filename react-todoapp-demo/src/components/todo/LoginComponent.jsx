@@ -20,9 +20,9 @@ export default function LoginComponent(){
         setPassword(event.target.value)
     }
 
-    function handleSubmit(){
+    async function handleSubmit(){
 
-        if (authCtx.login(user,pwd)){
+        if (await authCtx.login(user,pwd)){
             navigate(`/welcome/${user}`)
         } else {
             showError(true);
