@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import {executeBasicAuthService} from "../api/HWorldAPIService"
+import {executeBasicAuthAPI} from "../api/TodosAPIService"
+//import { apiClient } from "../api/ApiClient";
 
 
 //Create a Context
@@ -12,20 +13,29 @@ export default function AuthProvider({children}){
     //Put state in the context
     const [loggedin, setLoggedin] = useState(false)
     const [user, setUser] = useState(null)
-    const [token, setToken] = useState(false)
+    const [token, setToken] = useState(null)
 
     async function login(user, pwd){
         const batoken = 'Basic ' + window.btoa(user + ":" + pwd)
         
 
         try {
-            const response = await executeBasicAuthService(batoken)
+            const response = await executeBasicAuthAPI(batoken)
     
-            if (response.status==200){
+            if (response.status===200){
                 console.log('Login Successful.')
                 setLoggedin(true)
                 setUser(user)
                 setToken(batoken)
+
+                // apiClient.interceptors.request.use(
+                //     (config) => {
+                //         console.log('intercepting and adding a token')
+                //         config.headers.Authorization = batoken
+                //         return config
+                //     }
+                // )
+
                 return true
             } else {
                 //console.log('Login failed.')
