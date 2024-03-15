@@ -3,7 +3,7 @@ Jay's proj repo for Springboot 3, Spring Framework 6, React Training (in vscode)
 
 proj: react-todoapp-demo
 
-- created AuthenticationAPIService to call jwt api (POST); enabled interceptor to add jwt to all request
+- created AuthenticationAPIService to call jwt (Bearer token) api (POST); enabled interceptor to add jwt to all request
 - refactored; tried interceptor to add authorization header to API requests
 - updated AuthContext.js to use basic auth; generate token and send token to REST API 
 - updated TodoDetails compo to call createTodo API (post), updateTodo API (put); added new Route for createTodo
